@@ -154,22 +154,11 @@ solveCongruenceSystem :: [Congruence a] -> Congruence a
 solveCongruenceSystem x = foldr solvePairCongruences (Congruence 1 0 1) x
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+--Sieve of Eratosthenes
+sievePrimesAux :: [Int] -> [Int]
+sievePrimesAux [] = []
+sievePrimesAux (x:xs) = x:(sievePrimesAux possiblePrimes) where
+    possiblePrimes = filter (\y -> (y `mod` x) /= 0) xs
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sievePrimes :: Int -> [Int]
+sievePrimes upperLimit = sievePrimesAux [2..upperLimit]
